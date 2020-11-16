@@ -1,6 +1,6 @@
 {
-  "name": "@zalari/stencil-apollo",
-  "version": "0.1.5-zalarifix-1",
+  "name": "stencil-apollo",
+  "version": "0.1.6-zalarifix-1",
   "description": "Stencil Apollo",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",

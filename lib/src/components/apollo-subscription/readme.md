@@ -1,19 +1,17 @@
 # apollo-subscription
 
-
-
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property       | Attribute   | Description | Type                                            | Default     |
-| -------------- | ----------- | ----------- | ----------------------------------------------- | ----------- |
-| `client`       | --          |             | `ApolloClient<any>`                             | `undefined` |
-| `options`      | --          |             | `SubscriptionOptions<Record<string, any>, any>` | `undefined` |
-| `renderer`     | --          |             | `(result: any) => Element \| Element[]`         | `undefined` |
-| `subscription` | --          |             | `DocumentNode`                                  | `undefined` |
-| `variables`    | `variables` |             | `any`                                           | `undefined` |
+| Property       | Attribute   | Description | Type                                           | Default     |
+| -------------- | ----------- | ----------- | ---------------------------------------------- | ----------- |
+| `client`       | --          |             | `ApolloClient<any>`                            | `undefined` |
+| `options`      | --          |             | `SubscriptionOptions<OperationVariables, any>` | `undefined` |
+| `renderer`     | --          |             | `(result: any) => Element \| Element[]`        | `undefined` |
+| `subscription` | --          |             | `DocumentNode`                                 | `undefined` |
+| `variables`    | `variables` |             | `any`                                          | `undefined` |
 
 
 ## Events

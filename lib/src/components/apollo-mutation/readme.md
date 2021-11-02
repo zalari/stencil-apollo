@@ -1,26 +1,24 @@
 # apollo-mutation
 
-
-
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property    | Attribute   | Description | Type                                                                        | Default     |
-| ----------- | ----------- | ----------- | --------------------------------------------------------------------------- | ----------- |
-| `client`    | --          |             | `ApolloClient<any>`                                                         | `undefined` |
-| `mutation`  | --          |             | `DocumentNode`                                                              | `undefined` |
-| `options`   | --          |             | `MutationOptions<{ [key: string]: any; }, Record<string, any>>`             | `undefined` |
-| `renderer`  | --          |             | `(mutationFn: MutationFn<{}, Record<string, any>>) => Element \| Element[]` | `undefined` |
-| `variables` | `variables` |             | `any`                                                                       | `undefined` |
+| Property    | Attribute   | Description | Type                                                                         | Default     |
+| ----------- | ----------- | ----------- | ---------------------------------------------------------------------------- | ----------- |
+| `client`    | --          |             | `ApolloClient<any>`                                                          | `undefined` |
+| `mutation`  | --          |             | `DocumentNode`                                                               | `undefined` |
+| `options`   | --          |             | `MutationOptions<any, OperationVariables, DefaultContext, ApolloCache<any>>` | `undefined` |
+| `renderer`  | --          |             | `(mutationFn: MutationFn<{}, OperationVariables>) => Element \| Element[]`   | `undefined` |
+| `variables` | `variables` |             | `any`                                                                        | `undefined` |
 
 
 ## Events
 
-| Event   | Description | Type                                                                                                                                |
-| ------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `ready` |             | `CustomEvent<(options: Partial<MutationOptions<any, any>>) => Promise<FetchResult<any, Record<string, any>, Record<string, any>>>>` |
+| Event   | Description | Type                                                                                                                                                                  |
+| ------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ready` |             | `CustomEvent<(options: Partial<MutationOptions<any, any, DefaultContext, ApolloCache<any>>>) => Promise<FetchResult<any, Record<string, any>, Record<string, any>>>>` |
 
 
 ## Dependencies

@@ -1,4 +1,4 @@
-declare module "@stencil/core" {
+declare module '@stencil/core' {
   export namespace h {
     export namespace JSX {
       interface ElementChildrenAttribute {
@@ -11,6 +11,6 @@ export const Declarations = 'DECLARATIONS';
 
 declare global {
   interface StencilGlobalHTMLAttributes {
-    children? : any;
+    children?: any;
   }
 }

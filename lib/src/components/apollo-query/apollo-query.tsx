@@ -1,11 +1,11 @@
-import { Component, Prop, State, Element, Watch, Event, EventEmitter } from "@stencil/core";
-import { DocumentNode } from "graphql";
-import { QueryResult, QueryRenderer } from "../../utils/types";
-import { ApolloClient, WatchQueryOptions, ApolloQueryResult, ObservableQuery } from "@apollo/client/core";
-import { ApolloProviderConsumer } from "../../utils/apollo-client-state";
+import { Component, Element, Event, EventEmitter, Prop, State, Watch } from '@stencil/core';
+import { DocumentNode } from 'graphql';
+import { QueryRenderer, QueryResult } from '../../utils/types';
+import { ApolloClient, ApolloQueryResult, ObservableQuery, WatchQueryOptions } from '@apollo/client/core';
+import { ApolloProviderConsumer } from '../../utils/apollo-client-state';
 
 @Component({
-  tag: 'apollo-query'
+  tag: 'apollo-query',
 })
 export class ApolloQueryComponent {
   @Prop() query: DocumentNode;
@@ -22,51 +22,57 @@ export class ApolloQueryComponent {
   private _subscription: ZenObservable.Subscription;
 
   // without this client not getting injected
-  connectedCallback() { }
+  connectedCallback() {
+  }
 
-  componentWillLoad(){
+  componentWillLoad() {
     this.startSubscription();
   }
+
   @Watch('client')
   @Watch('query')
   @Watch('variables')
   @Watch('renderer')
   @Watch('options')
-  onPropsChange(){
+  onPropsChange() {
     this.stopSubscription();
     this.startSubscription();
   }
-  componentDidUnload(){
+
+  disconnectedCallback() {
     this.stopSubscription();
   }
-  getResult() {
+
+  getResult(): QueryResult {
     return {
-      data: this.originalResult && this.originalResult.data,
+      data: this.originalResult?.data,
       loading: this.originalResult ? this.originalResult.loading : true,
       error: {
-        graphQLErrors: this.originalResult && this.originalResult.errors,
+        clientErrors: this.originalResult?.data?.clientErrors,
+        graphQLErrors: this.originalResult?.errors,
         networkError: undefined,
-        message: this.originalResult && this.originalResult.errors && this.originalResult.errors[0] && this.originalResult.errors[0].message,
-        name: this.originalResult && this.originalResult.errors && this.originalResult.errors[0] && this.originalResult.errors[0].name,
-        extraInfo: this.originalResult && this.originalResult.errors && this.originalResult.errors[0] && this.originalResult.errors[0].originalError,
+        message: this.originalResult?.errors[0]?.message,
+        name: this.originalResult?.errors[0]?.name,
+        extraInfo: this.originalResult?.errors[0]?.originalError,
       },
       variables: this.variables,
-      networkStatus: this.originalResult && this.originalResult.networkStatus,
-      refetch: this.observable && this.observable.refetch.bind(this.observable),
-      fetchMore: this.observable && this.observable.fetchMore.bind(this.observable),
-      startPolling: this.observable && this.observable.startPolling.bind(this.observable),
-      stopPolling: this.observable && this.observable.stopPolling.bind(this.observable),
-      subscribeToMore: this.observable && this.observable.subscribeToMore.bind(this.observable),
-      updateQuery: this.observable && this.observable.updateQuery.bind(this.observable),
+      networkStatus: this.originalResult?.networkStatus,
+      refetch: this.observable?.refetch.bind(this.observable),
+      fetchMore: this.observable?.fetchMore.bind(this.observable),
+      startPolling: this.observable?.startPolling.bind(this.observable),
+      stopPolling: this.observable?.stopPolling.bind(this.observable),
+      subscribeToMore: this.observable?.subscribeToMore.bind(this.observable),
+      updateQuery: this.observable?.updateQuery.bind(this.observable),
       client: this.client,
     };
   }
-  startSubscription(){
+
+  startSubscription() {
     if (this.client) {
       this.observable = this.client.watchQuery({
         query: this.query,
         variables: this.variables,
-        ...this.options
+        ...this.options,
       });
       this._subscription = this.observable.subscribe(originalResult => {
         this.originalResult = originalResult;
@@ -80,12 +86,14 @@ export class ApolloQueryComponent {
       throw new Error('You should wrap your parent component with apollo-provider custom element or ApolloProvider functional component');
     }
   }
-  stopSubscription(){
-    if(this._subscription){
+
+  stopSubscription() {
+    if (this._subscription) {
       this._subscription.unsubscribe();
     }
   }
-  render(){
+
+  render() {
     return this.renderer && this.renderer(this.getResult());
   }
 }

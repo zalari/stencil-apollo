@@ -1,6 +1,6 @@
 {
-  "name": "stencil-apollo",
-  "version": "0.1.5",
+  "name": "@zalari/stencil-apollo",
+  "version": "0.1.5-zalarifix-1",
   "description": "Stencil Apollo",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -25,12 +25,12 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3.0.0",
-    "graphql": "^14.1.1 || ^15.0.0"
+    "graphql": "^14.1.1 || ^15.0.0 || ^16.0.1"
   },
   "devDependencies": {
-    "@apollo/client": "^3.2.2",
-    "@stencil/core": "1.12.7",
-    "graphql": "15.0.0"
+    "@apollo/client": "3.4.16",
+    "@stencil/core": "2.10.0",
+    "graphql": "16.0.1"
   },
   "repository": {
     "type": "git",
